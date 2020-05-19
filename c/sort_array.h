@@ -3,6 +3,6 @@
 
 typedef int *Int_ptr;
 
-void selectionSort_array(Int_ptr, unsigned);
+void selectionSort_array(Int_ptr, int);
 
 #endif
