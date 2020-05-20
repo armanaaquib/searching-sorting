@@ -176,6 +176,7 @@ int main(void)
   };
 
   Report_ptr report = runt_test_suites(test_suites, 3);
-
+  display_report(report);
+  
   return 0;
 }
