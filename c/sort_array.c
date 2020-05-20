@@ -27,7 +27,7 @@ void selectionSort_array(Int_ptr array, int length)
 
 void bubbleSort_array(Int_ptr array, int length)
 {
-  for (int i = 0; i < length - 1; i++) 
+  for (int i = 0; i < length - 1; i++)
   {
     int swap_status = 0;
     
@@ -42,5 +42,22 @@ void bubbleSort_array(Int_ptr array, int length)
 
     if(swap_status == 0)
       break;
+  }
+}
+
+void insertionSort_array(Int_ptr array, int length)
+{
+  for (int i = 1; i < length; i++)
+  {
+    int key = array[i];
+
+    int j = i - 1;
+    while (j >= 0 && key < array[j])
+    {
+      array[j + 1] = array[j];
+      j -= 1;
+    }
+
+    array[j + 1] = key;
   }
 }

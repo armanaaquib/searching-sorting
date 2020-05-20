@@ -12,6 +12,11 @@ Test_ptr should_b_sort_empty_array(void);
 Test_ptr should_b_sort_sorted_array(void);
 Test_ptr should_b_sort_unsorted_array(void);
 
+void test_insertionSort_array(Report_ptr);
+Test_ptr should_i_sort_empty_array(void);
+Test_ptr should_i_sort_sorted_array(void);
+Test_ptr should_i_sort_unsorted_array(void);
+
 Test_ptr should_s_sort_empty_array()
 {
   Test_ptr test = create_test("should sort empty array");
@@ -112,14 +117,65 @@ void test_bubbleSort_array(Report_ptr report)
   run_tests("bubbleSort_array()", tests, 3, report);
 }
 
+Test_ptr should_i_sort_empty_array()
+{
+  Test_ptr test = create_test("should sort empty array");
+  
+  int array[] = {};
+  int expected[] = {};
+
+  insertionSort_array(array, 0);
+  assert_int_array_equal(array, expected, 0, test);
+
+  return test;
+}
+
+Test_ptr should_i_sort_sorted_array()
+{
+  Test_ptr test = create_test("should sort sorted array");
+
+  int array[] = {1, 2, 3, 4, 5};
+  int expected[] = {1, 2, 3, 4, 5};
+
+  insertionSort_array(array, 5);
+  assert_int_array_equal(array, expected, 5, test);
+
+  return test;
+}
+
+Test_ptr should_i_sort_unsorted_array()
+{
+  Test_ptr test = create_test("should sort unsorted array");
+
+  int array[] = {2, 1, 5, 3, 4};
+  int expected[] = {1, 2, 3, 4, 5};
+
+  insertionSort_array(array, 5);
+  assert_int_array_equal(array, expected, 5, test);
+
+  return test;
+}
+
+void test_insertionSort_array(Report_ptr report)
+{
+  Test_Func tests[] = {
+    should_i_sort_empty_array,
+    should_i_sort_sorted_array,
+    should_i_sort_unsorted_array
+  };
+
+  run_tests("insertionSort_array()", tests, 3, report);
+}
+
 int main(void)
 {
   TestSuite_Func test_suites[] = {
     test_selectionSort_array,
-    test_bubbleSort_array
+    test_bubbleSort_array,
+    test_insertionSort_array
   };
 
-  Report_ptr report = runt_test_suites(test_suites, 2);
+  Report_ptr report = runt_test_suites(test_suites, 3);
 
   return 0;
 }
