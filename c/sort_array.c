@@ -11,13 +11,36 @@ void swap(Int_ptr int_1, Int_ptr int_2)
 
 void selectionSort_array(Int_ptr array, int length)
 {
-  for (int i = 0; i < length - 1; i++) {
+  for (int i = 0; i < length - 1; i++) 
+  {
     int min_itm_idx = i;
 
-    for (int j = i + 1; j < length; j++) {
-      if (array[j] < array[min_itm_idx]) min_itm_idx = j;
+    for (int j = i + 1; j < length; j++) 
+    {
+      if (array[j] < array[min_itm_idx]) 
+        min_itm_idx = j;
     }
 
     swap(&array[i], &array[min_itm_idx]);
+  }
+}
+
+void bubbleSort_array(Int_ptr array, int length)
+{
+  for (int i = 0; i < length - 1; i++) 
+  {
+    int swap_status = 0;
+    
+    for (int j = i; j < length - i - 1; j++)
+    {
+      if (array[j] > array[j+1])
+      {
+        swap(&array[j], &array[j+1]);
+        swap_status = 1;
+      }
+    }
+
+    if(swap_status == 0)
+      break;
   }
 }
