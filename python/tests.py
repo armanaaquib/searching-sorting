@@ -1,7 +1,5 @@
 import unittest
-from selection_sort import selection_sort
-from bubble_sort import bubble_sort
-from insertion_sort import insertion_sort
+from sort import selection_sort, bubble_sort, insertion_sort
 
 class TestSelectionSort(unittest.TestCase):
   def test_empty_list(self):
