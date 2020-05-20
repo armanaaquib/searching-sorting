@@ -43,7 +43,6 @@ n: 1k, time: 0.5s
 Best Case
 
 ```
-
 n: n-1
 
 ```
@@ -51,9 +50,7 @@ n: n-1
 Worst Case
 
 ```
-
 n: n-1, n-2, n-3, ., ., 1
-
 ```
 
 #### Time (python3 and macOs\*)
@@ -77,17 +74,13 @@ n: 1k, time: 0.13s
 Best Case
 
 ```
-
 n: n-1
-
 ```
 
 Worst Case
 
 ```
-
 n: n-1, n-2, n-3, ., ., 1
-
 ```
 
 #### Time (python3 and macOs\*)
