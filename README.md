@@ -44,7 +44,6 @@ Best Case
 
 ```
 n: n-1
-
 ```
 
 Worst Case
