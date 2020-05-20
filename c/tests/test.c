@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "test.h"
 
-Report_ptr create_report(void);
+TestReport_ptr create_report(void);
 void pass_message(Char_ptr);
 void fail_message(Char_ptr);
 void error_message(Char_ptr);
@@ -20,43 +20,40 @@ Test_ptr create_test(Char_ptr name)
 
 void pass_message(Char_ptr test_name)
 {
-  printf("%s %s\n", PASS, test_name);
+  printf("  %s %s\n", PASS, test_name);
 }
 
 void fail_message(Char_ptr test_name)
 {
-  printf("%s %s\n", FAIL, test_name);
+  printf("  %s %s\n", FAIL, test_name);
 }
 
 void error_message(Char_ptr error)
 {
-  printf("%s\n", error);
+  printf("\t%s\n", error);
 }
 
 void display_test_suite_name(Char_ptr test_suite_name)
 {
-  printf("%s\n", test_suite_name);
+  printf("\v%s\n", test_suite_name);
 }
 
-Report_ptr create_report(void)
+TestReport_ptr create_report(void)
 {
-  Report_ptr report = malloc(sizeof(Report));
+  TestReport_ptr report = malloc(sizeof(Test_Report));
 
-  report->total = 0;
   report->passed = 0;
   report->failed = 0;
 
   return report;
 }
 
-void run_tests(Char_ptr test_suite_name, Test_Func tests[], int length, Report_ptr report)
+void run_tests(Char_ptr test_suite_name, Test_Func tests[], int length, TestReport_ptr report)
 {
   display_test_suite_name(test_suite_name);
 
   for(int i = 0; i < length; i++)
   {
-    report->total++;
-
     Test_ptr test = (*tests[i])();
 
     if(test->status)
@@ -74,9 +71,9 @@ void run_tests(Char_ptr test_suite_name, Test_Func tests[], int length, Report_p
 
 }
 
-Report_ptr runt_test_suites(TestSuite_Func test_suites[], int length)
+TestReport_ptr runt_test_suites(TestSuite_Func test_suites[], int length)
 {
-  Report_ptr report = create_report();
+  TestReport_ptr report = create_report();
 
   for(int i = 0; i < length; i++)
   {
@@ -86,8 +83,7 @@ Report_ptr runt_test_suites(TestSuite_Func test_suites[], int length)
   return report;
 }
 
-void display_report(Report_ptr report)
+void display_report(TestReport_ptr report)
 {
-  printf("\nTotal: %d\n", report->total);
-  printf("Passed: %d, Failed: %d\n", report->passed, report->failed);
+  printf("\v%d Passing, %d Failing\n", report->passed, report->failed);
 }

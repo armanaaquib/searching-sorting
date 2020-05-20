@@ -23,21 +23,20 @@ typedef Test *Test_ptr;
 
 typedef struct
 {
-  unsigned total;
   unsigned passed;
   unsigned failed;
-} Report;
+} Test_Report;
 
-typedef Report *Report_ptr;
+typedef Test_Report *TestReport_ptr;
 
 typedef Test_ptr (*Test_Func)(void);
-typedef void (*TestSuite_Func)(Report_ptr);
+typedef void (*TestSuite_Func)(TestReport_ptr);
 
 Test_ptr create_test(Char_ptr);
 
-void run_tests(Char_ptr, Test_Func [], int, Report_ptr);
-Report_ptr runt_test_suites(TestSuite_Func [], int);
+void run_tests(Char_ptr, Test_Func [], int, TestReport_ptr);
+TestReport_ptr runt_test_suites(TestSuite_Func [], int);
 
-void display_report(Report_ptr);
+void display_report(TestReport_ptr);
 
 #endif

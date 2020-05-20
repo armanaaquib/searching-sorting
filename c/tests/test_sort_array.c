@@ -2,17 +2,17 @@
 #include "assertions.h"
 #include "sort_array.h"
 
-void test_selectionSort_array(Report_ptr);
+void test_selectionSort_array(TestReport_ptr);
 Test_ptr should_s_sort_empty_array(void);
 Test_ptr should_s_sort_sorted_array(void);
 Test_ptr should_s_sort_unsorted_array(void);
 
-void test_bubbleSort_array(Report_ptr);
+void test_bubbleSort_array(TestReport_ptr);
 Test_ptr should_b_sort_empty_array(void);
 Test_ptr should_b_sort_sorted_array(void);
 Test_ptr should_b_sort_unsorted_array(void);
 
-void test_insertionSort_array(Report_ptr);
+void test_insertionSort_array(TestReport_ptr);
 Test_ptr should_i_sort_empty_array(void);
 Test_ptr should_i_sort_sorted_array(void);
 Test_ptr should_i_sort_unsorted_array(void);
@@ -56,7 +56,7 @@ Test_ptr should_s_sort_unsorted_array()
   return test;
 }
 
-void test_selectionSort_array(Report_ptr report)
+void test_selectionSort_array(TestReport_ptr report)
 {
   Test_Func tests[] = {
     should_s_sort_empty_array,
@@ -106,7 +106,7 @@ Test_ptr should_b_sort_unsorted_array()
   return test;
 }
 
-void test_bubbleSort_array(Report_ptr report)
+void test_bubbleSort_array(TestReport_ptr report)
 {
   Test_Func tests[] = {
     should_b_sort_empty_array,
@@ -156,7 +156,7 @@ Test_ptr should_i_sort_unsorted_array()
   return test;
 }
 
-void test_insertionSort_array(Report_ptr report)
+void test_insertionSort_array(TestReport_ptr report)
 {
   Test_Func tests[] = {
     should_i_sort_empty_array,
@@ -175,7 +175,7 @@ int main(void)
     test_insertionSort_array
   };
 
-  Report_ptr report = runt_test_suites(test_suites, 3);
+  TestReport_ptr report = runt_test_suites(test_suites, 3);
   display_report(report);
   
   return 0;
