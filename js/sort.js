@@ -1,14 +1,14 @@
 const selectionSort = function (list) {
   for (let i = 0; i < list.length - 1; i++) {
-    min_itm_idx = i;
+    let minItmIdx = i;
 
     for (let j = i + 1; j < list.length; j++) {
-      if (list[j] < list[min_itm_idx]) min_itm_idx = j;
+      if (list[j] < list[minItmIdx]) minItmIdx = j;
     }
 
-    temp = list[i];
-    list[i] = list[min_itm_idx];
-    list[min_itm_idx] = temp;
+    const temp = list[i];
+    list[i] = list[minItmIdx];
+    list[minItmIdx] = temp;
   }
 
   return list;
@@ -16,11 +16,11 @@ const selectionSort = function (list) {
 
 const bubbleSort = function (list) {
   for (let i = 0; i < list.length; i++) {
-    swap = false;
+    let swap = false;
 
     for (let j = 0; j < list.length - i - 1; j++) {
       if (list[j] > list[j + 1]) {
-        temp = list[j];
+        const temp = list[j];
         list[j] = list[j + 1];
         list[j + 1] = temp;
         swap = true;
@@ -34,9 +34,9 @@ const bubbleSort = function (list) {
 
 const insertionSort = function (list) {
   for (let i = 1; i < list.length; i++) {
-    key = list[i];
+    const key = list[i];
 
-    j = i - 1;
+    let j = i - 1;
     while (j >= 0 && key < list[j]) {
       list[j + 1] = list[j];
       j -= 1;
