@@ -7,11 +7,10 @@ void pass_message(Char_ptr);
 void fail_message(Char_ptr);
 void error_message(Char_ptr);
 
-Test_ptr create_test(Char_ptr name)
+Test_ptr create_test(void)
 {
   Test_ptr test = malloc(sizeof(Test));
 
-  test->name = name;
   test->status = True;
   test->error = malloc(sizeof(char) * 50);
 
@@ -54,7 +53,8 @@ void run_tests(Char_ptr test_suite_name, Test_Func tests[], int length, TestRepo
 
   for(int i = 0; i < length; i++)
   {
-    Test_ptr test = (*tests[i])();
+    Test_ptr test = create_test();
+    test = (*tests[i])(test);
 
     if(test->status)
     {

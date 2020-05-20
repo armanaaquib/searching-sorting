@@ -3,23 +3,23 @@
 #include "sort_array.h"
 
 void test_selectionSort_array(TestReport_ptr);
-Test_ptr should_s_sort_empty_array(void);
-Test_ptr should_s_sort_sorted_array(void);
-Test_ptr should_s_sort_unsorted_array(void);
+Test_ptr should_s_sort_empty_array(Test_ptr);
+Test_ptr should_s_sort_sorted_array(Test_ptr);
+Test_ptr should_s_sort_unsorted_array(Test_ptr);
 
 void test_bubbleSort_array(TestReport_ptr);
-Test_ptr should_b_sort_empty_array(void);
-Test_ptr should_b_sort_sorted_array(void);
-Test_ptr should_b_sort_unsorted_array(void);
+Test_ptr should_b_sort_empty_array(Test_ptr);
+Test_ptr should_b_sort_sorted_array(Test_ptr);
+Test_ptr should_b_sort_unsorted_array(Test_ptr);
 
 void test_insertionSort_array(TestReport_ptr);
-Test_ptr should_i_sort_empty_array(void);
-Test_ptr should_i_sort_sorted_array(void);
-Test_ptr should_i_sort_unsorted_array(void);
+Test_ptr should_i_sort_empty_array(Test_ptr);
+Test_ptr should_i_sort_sorted_array(Test_ptr);
+Test_ptr should_i_sort_unsorted_array(Test_ptr);
 
-Test_ptr should_s_sort_empty_array()
+Test_ptr should_s_sort_empty_array(Test_ptr test)
 {
-  Test_ptr test = create_test("should sort empty array");
+  test->name = "should sort empty array";
   
   int array[] = {};
   int expected[] = {};
@@ -30,9 +30,9 @@ Test_ptr should_s_sort_empty_array()
   return test;
 }
 
-Test_ptr should_s_sort_sorted_array()
+Test_ptr should_s_sort_sorted_array(Test_ptr test)
 {
-  Test_ptr test = create_test("should sort sorted array");
+  test->name = "should sort sorted array";
 
   int array[] = {1, 2, 3, 4, 5};
   int expected[] = {1, 2, 3, 4, 5};
@@ -43,9 +43,9 @@ Test_ptr should_s_sort_sorted_array()
   return test;
 }
 
-Test_ptr should_s_sort_unsorted_array()
+Test_ptr should_s_sort_unsorted_array(Test_ptr test)
 {
-  Test_ptr test = create_test("should sort unsorted array");
+  test->name = "should sort unsorted array";
 
   int array[] = {2, 1, 5, 3, 4};
   int expected[] = {1, 2, 3, 4, 5};
@@ -67,9 +67,9 @@ void test_selectionSort_array(TestReport_ptr report)
   run_tests("selectionSort_array()", tests, 3, report);
 }
 
-Test_ptr should_b_sort_empty_array()
+Test_ptr should_b_sort_empty_array(Test_ptr test)
 {
-  Test_ptr test = create_test("should sort empty array");
+  test->name = "should sort empty array";
   
   int array[] = {};
   int expected[] = {};
@@ -80,9 +80,9 @@ Test_ptr should_b_sort_empty_array()
   return test;
 }
 
-Test_ptr should_b_sort_sorted_array()
+Test_ptr should_b_sort_sorted_array(Test_ptr test)
 {
-  Test_ptr test = create_test("should sort sorted array");
+  test->name = "should sort sorted array";
 
   int array[] = {1, 2, 3, 4, 5};
   int expected[] = {1, 2, 3, 4, 5};
@@ -93,9 +93,9 @@ Test_ptr should_b_sort_sorted_array()
   return test;
 }
 
-Test_ptr should_b_sort_unsorted_array()
+Test_ptr should_b_sort_unsorted_array(Test_ptr test)
 {
-  Test_ptr test = create_test("should sort unsorted array");
+  test->name = "should sort unsorted array";
 
   int array[] = {2, 1, 5, 3, 4};
   int expected[] = {1, 2, 3, 4, 5};
@@ -117,9 +117,9 @@ void test_bubbleSort_array(TestReport_ptr report)
   run_tests("bubbleSort_array()", tests, 3, report);
 }
 
-Test_ptr should_i_sort_empty_array()
+Test_ptr should_i_sort_empty_array(Test_ptr test)
 {
-  Test_ptr test = create_test("should sort empty array");
+  test->name = "should sort empty array";
   
   int array[] = {};
   int expected[] = {};
@@ -130,9 +130,9 @@ Test_ptr should_i_sort_empty_array()
   return test;
 }
 
-Test_ptr should_i_sort_sorted_array()
+Test_ptr should_i_sort_sorted_array(Test_ptr test)
 {
-  Test_ptr test = create_test("should sort sorted array");
+  test->name = "should sort sorted array";
 
   int array[] = {1, 2, 3, 4, 5};
   int expected[] = {1, 2, 3, 4, 5};
@@ -143,9 +143,9 @@ Test_ptr should_i_sort_sorted_array()
   return test;
 }
 
-Test_ptr should_i_sort_unsorted_array()
+Test_ptr should_i_sort_unsorted_array(Test_ptr test)
 {
-  Test_ptr test = create_test("should sort unsorted array");
+  test->name = "should sort unsorted array";
 
   int array[] = {2, 1, 5, 3, 4};
   int expected[] = {1, 2, 3, 4, 5};
