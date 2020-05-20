@@ -1,7 +1,5 @@
 const assert = require('assert');
-const { selectionSort } = require('./selectionSort');
-const { bubbleSort } = require('./bubbleSort');
-const { insertionSort } = require('./insertionSort');
+const { selectionSort, bubbleSort, insertionSort } = require('./sort');
 
 describe('selectionSort', function () {
   it('should sort empty list', function () {
