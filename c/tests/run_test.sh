@@ -4,7 +4,7 @@ rm -f *.o test.out
 
 cp ../$file.h ./
 
-gcc -o test.out ../$file.c test_$file.c test.c assertions.c
+gcc -o test.out ../$file.c test_$file.c run-c-tests/*.c
 
 if [ $? == 0 ]
 then

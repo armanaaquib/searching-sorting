@@ -1,5 +1,5 @@
-#include "test.h"
-#include "assertions.h"
+#include "run-c-tests/test.h"
+#include "run-c-tests/assertions.h"
 #include "sort_array.h"
 
 void test_selectionSort_array(TestReport_ptr);
