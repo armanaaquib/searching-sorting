@@ -61,3 +61,31 @@ void bubbleSort_linked_list(LinkedList_ptr linked_list, Matcher is_less_than)
     p_walk = p_walk->next;
   }
 }
+
+void insertionSort_linked_list(LinkedList_ptr linked_list, Matcher is_less_than)
+{
+  Node_ptr p_walk = linked_list->first;
+
+  while(p_walk != NULL)
+  {
+    Element key_el = p_walk->element;
+
+    Node_ptr i_p_walk = p_walk->prev;
+    while(i_p_walk && (*is_less_than)(key_el, i_p_walk->element))
+    {
+      i_p_walk->next->element = i_p_walk->element;
+      i_p_walk = i_p_walk->prev;
+    }
+
+    if(i_p_walk == NULL)
+    {
+      linked_list->first->element = key_el;
+    }
+    else
+    {
+      i_p_walk->next->element = key_el;
+    }
+    
+    p_walk = p_walk->next;
+  }
+}
