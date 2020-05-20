@@ -23,6 +23,7 @@ typedef Linked_list *LinkedList_ptr;
 
 typedef int (*Matcher)(Element, Element);
 
-void selectionSort_linked_list(LinkedList_ptr, Matcher less_than);
+void selectionSort_linked_list(LinkedList_ptr, Matcher is_less_than);
+void bubbleSort_linked_list(LinkedList_ptr, Matcher is_less_than);
 
 #endif

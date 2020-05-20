@@ -23,11 +23,9 @@ void assert_linked_list_equal(LinkedList_ptr ll_1, LinkedList_ptr ll_2, Matcher 
 {
   if(test->status == False) return;
 
-  Bool are_equals = True;
-  
-  are_equals = are_equals && (ll_1->length == ll_2->length);
+  Bool is_equal = (ll_1->length == ll_2->length);
 
-  if(!are_equals)
+  if(!is_equal)
   {
     test->status = False;
     sprintf(test->error, "Expected length %d Actual length %d\n", ll_2->length, ll_1->length);
@@ -39,18 +37,16 @@ void assert_linked_list_equal(LinkedList_ptr ll_1, LinkedList_ptr ll_2, Matcher 
 
   while(p_walk_1 != NULL)
   {
-    are_equals = are_equals && (*is_el_equal)(p_walk_1->element, p_walk_2->element);
+    is_equal = (*is_el_equal)(p_walk_1->element, p_walk_2->element);
+
+    if(!is_equal)
+    {
+      test->status = False;
+      sprintf(test->error, "Elements are not equal");
+      break;
+    }
+
     p_walk_1 = p_walk_1->next;
     p_walk_2 = p_walk_2->next;
   }
-
-  if(are_equals)
-  {
-    test->status = True;
-    return;
-  }
-
-  test->status = False;
-  sprintf(test->error, "Elements are not equal");
-  return;
 }
