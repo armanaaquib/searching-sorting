@@ -39,19 +39,16 @@ void bubbleSort_linked_list(LinkedList_ptr linked_list, Matcher is_less_than)
   while(p_walk != NULL)
   {
     int swap_status = 0;
-    
-    Node_ptr prev = p_walk;
     Node_ptr i_p_walk = p_walk->next;
 
     while(i_p_walk != NULL)
     {
-      if((*is_less_than)(i_p_walk->element, prev->element))
+      if((*is_less_than)(i_p_walk->element, i_p_walk->prev->element))
       {
-        swap_element(i_p_walk, prev);
+        swap_element(i_p_walk, i_p_walk->prev);
         swap_status = 1;
       }
 
-      prev = i_p_walk;
       i_p_walk = i_p_walk->next;
     }
 
@@ -69,8 +66,8 @@ void insertionSort_linked_list(LinkedList_ptr linked_list, Matcher is_less_than)
   while(p_walk != NULL)
   {
     Element key_el = p_walk->element;
-
     Node_ptr i_p_walk = p_walk->prev;
+
     while(i_p_walk && (*is_less_than)(key_el, i_p_walk->element))
     {
       i_p_walk->next->element = i_p_walk->element;
@@ -88,4 +85,5 @@ void insertionSort_linked_list(LinkedList_ptr linked_list, Matcher is_less_than)
     
     p_walk = p_walk->next;
   }
+
 }
