@@ -9,8 +9,6 @@ def selection_sort(l):
 
         l[i], l[min_itm_idx] = l[min_itm_idx], l[i]
 
-    return l
-
 
 def bubble_sort(l):
 
@@ -25,8 +23,6 @@ def bubble_sort(l):
         if swap is False:
             break
 
-    return l
-
 
 def insertion_sort(l):
 
@@ -40,10 +36,8 @@ def insertion_sort(l):
 
         l[j+1] = key
 
-    return l
 
-
-def quick_sort(l):
+def quick_not_in_place_sort(l):
     if len(l) <= 1:
         return l
 
@@ -58,4 +52,4 @@ def quick_sort(l):
         else:
             right.append(el)
 
-    return quick_sort(left) + [pivot] + quick_sort(right)
+    return quick_not_in_place_sort(left) + [pivot] + quick_not_in_place_sort(right)

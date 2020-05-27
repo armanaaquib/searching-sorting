@@ -1,49 +1,72 @@
 import unittest
-from sort import selection_sort, bubble_sort, insertion_sort, quick_sort
+from sort import (selection_sort,
+                  bubble_sort,
+                  insertion_sort,
+                  quick_not_in_place_sort)
 
 
 class TestSelectionSort(unittest.TestCase):
     def test_empty_list(self):
-        self.assertEqual(selection_sort([]), [])
+        l = []
+        selection_sort(l)
+        self.assertEqual(l, [])
 
     def test_sorted_list(self):
-        self.assertEqual(selection_sort([1, 2, 3, 4, 5]), [1, 2, 3, 4, 5])
+        l = [1, 2, 3, 4, 5]
+        selection_sort(l)
+        self.assertEqual(l, [1, 2, 3, 4, 5])
 
     def test_unsorted_list(self):
-        self.assertEqual(selection_sort([5, 4, 3, 0, 1]), [0, 1, 3, 4, 5])
+        l = [5, 6, 3, 0, 1]
+        selection_sort(l)
+        self.assertEqual(l, [0, 1, 3, 5, 6])
 
 
 class TestBubbleSort(unittest.TestCase):
     def test_empty_list(self):
-        self.assertEqual(bubble_sort([]), [])
+        l = []
+        bubble_sort(l)
+        self.assertEqual(l, [])
 
     def test_sorted_list(self):
-        self.assertEqual(bubble_sort([1, 2, 3, 4, 5]), [1, 2, 3, 4, 5])
+        l = [1, 2, 3, 4, 5]
+        bubble_sort(l)
+        self.assertEqual(l, [1, 2, 3, 4, 5])
 
     def test_unsorted_list(self):
-        self.assertEqual(bubble_sort([5, 4, 3, 0, 1]), [0, 1, 3, 4, 5])
+        l = [5, 6, 3, 0, 1]
+        bubble_sort(l)
+        self.assertEqual(l, [0, 1, 3, 5, 6])
 
 
 class TestInsertionSort(unittest.TestCase):
     def test_empty_list(self):
-        self.assertEqual(insertion_sort([]), [])
+        l = []
+        insertion_sort(l)
+        self.assertEqual(l, [])
 
     def test_sorted_list(self):
-        self.assertEqual(insertion_sort([1, 2, 3, 4, 5]), [1, 2, 3, 4, 5])
+        l = [1, 2, 3, 4, 5]
+        insertion_sort(l)
+        self.assertEqual(l, [1, 2, 3, 4, 5])
 
     def test_unsorted_list(self):
-        self.assertEqual(insertion_sort([5, 4, 3, 0, 1]), [0, 1, 3, 4, 5])
+        l = [5, 6, 3, 0, 1]
+        insertion_sort(l)
+        self.assertEqual(l, [0, 1, 3, 5, 6])
 
 
-class TestQuickSort(unittest.TestCase):
+class TestQuickNotInPlaceSort(unittest.TestCase):
     def test_empty_list(self):
-        self.assertEqual(quick_sort([]), [])
+        self.assertEqual(quick_not_in_place_sort([]), [])
 
     def test_sorted_list(self):
-        self.assertEqual(quick_sort([1, 2, 3, 4, 5]), [1, 2, 3, 4, 5])
+        self.assertEqual(quick_not_in_place_sort(
+            [1, 2, 3, 4, 5]), [1, 2, 3, 4, 5])
 
     def test_unsorted_list(self):
-        self.assertEqual(quick_sort([5, 4, 3, 0, 1]), [0, 1, 3, 4, 5])
+        self.assertEqual(quick_not_in_place_sort(
+            [5, 6, 3, 0, 1]), [0, 1, 3, 5, 6])
 
 
 if __name__ == "__main__":
