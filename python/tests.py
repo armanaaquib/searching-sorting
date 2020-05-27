@@ -2,7 +2,8 @@ import unittest
 from sort import (selection_sort,
                   bubble_sort,
                   insertion_sort,
-                  quick_not_in_place_sort)
+                  quick_not_in_place_sort,
+                  quick_sort)
 
 
 class TestSelectionSort(unittest.TestCase):
@@ -67,6 +68,23 @@ class TestQuickNotInPlaceSort(unittest.TestCase):
     def test_unsorted_list(self):
         self.assertEqual(quick_not_in_place_sort(
             [5, 6, 3, 0, 1]), [0, 1, 3, 5, 6])
+
+
+class TestQuickSort(unittest.TestCase):
+    def test_empty_list(self):
+        l = []
+        quick_sort(l, -1, -1)
+        self.assertEqual(l, [])
+
+    def test_sorted_list(self):
+        l = [1, 2, 3, 4, 5]
+        quick_sort(l, 0, 4)
+        self.assertEqual(l, [1, 2, 3, 4, 5])
+
+    def test_unsorted_list(self):
+        l = [5, 6, 3, 0, 1]
+        quick_sort(l, 0, 4)
+        self.assertEqual(l, [0, 1, 3, 5, 6])
 
 
 if __name__ == "__main__":
