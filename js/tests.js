@@ -5,6 +5,7 @@ const {
   insertionSort,
   quickSort,
   quickNotInPlaceSort,
+  jsSort,
 } = require('./sort');
 
 describe('selectionSort', function () {
@@ -101,5 +102,31 @@ describe('quickNotInPlaceSort', function () {
   it('should sort unsorted list', function () {
     const list = [5, 2, 3, 1, 0];
     assert.deepStrictEqual(quickNotInPlaceSort(list), [0, 1, 2, 3, 5]);
+  });
+});
+
+describe('jsSort', function () {
+  it('should sort empty list', function () {
+    const list = [];
+    jsSort(list);
+    assert.deepStrictEqual(list, []);
+  });
+
+  it('should sort sorted list', function () {
+    const list = [1, 2, 3, 4, 5];
+    jsSort(list);
+    assert.deepStrictEqual(list, [1, 2, 3, 4, 5]);
+  });
+
+  it('should sort rev sorted list', function () {
+    const list = [5, 4, 3, 2, 1];
+    jsSort(list);
+    assert.deepStrictEqual(list, [1, 2, 3, 4, 5]);
+  });
+
+  it('should sort unsorted list', function () {
+    const list = [5, 2, 3, 1, 0];
+    jsSort(list);
+    assert.deepStrictEqual(list, [0, 1, 2, 3, 5]);
   });
 });

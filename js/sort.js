@@ -64,6 +64,8 @@ const quickNotInPlaceSort = function (list) {
     .concat(quickNotInPlaceSort(right));
 };
 
+/*
+// Lomuto partition scheme
 const quickSort = function (list, start, end) {
   if (end <= start) return;
 
@@ -88,6 +90,94 @@ const quickSort = function (list, start, end) {
   quickSort(list, start, pivot_idx - 1);
   quickSort(list, pivot_idx + 1, end);
 };
+*/
+
+// Hoare partition scheme
+const quickSort = function (list, low, high) {
+  if (high <= low) return;
+
+  const pivot = list[Math.floor((low + high) / 2)];
+
+  let i = low;
+  let j = high;
+
+  while (i < j) {
+    while (list[i] < pivot) i += 1;
+    while (list[j] > pivot) j -= 1;
+
+    if (i < j) {
+      const temp = list[i];
+      list[i] = list[j];
+      list[j] = temp;
+      i += 1;
+      j -= 1;
+    }
+  }
+
+  quickSort(list, low, j);
+  quickSort(list, j + 1, high);
+};
+
+const findPos = function (list, start, end, el) {
+  if (start > end) {
+    return start;
+  }
+
+  const midIdx = Math.ceil((start + end) / 2);
+
+  if (el < list[midIdx]) {
+    return findPos(list, start, midIdx - 1, el);
+  } else {
+    return findPos(list, midIdx + 1, end, el);
+  }
+};
+
+const shiftRight = function (list, fromIdx, tillIdx) {
+  for (let i = tillIdx - 1; i >= fromIdx; i--) {
+    list[i + 1] = list[i];
+  }
+};
+
+const startInsertionSort = function (list, startIndx) {
+  for (let i = startIndx; i < list.length; i++) {
+    const key = list[i];
+    const indx = findPos(list, 0, i - 1, key);
+    shiftRight(list, indx, i);
+    list[indx] = key;
+  }
+};
+
+const sortAsRevSorted = function (list) {
+  for (let i = 1; i < list.length; i++) {
+    if (list[i] >= list[0]) {
+      return startInsertionSort(list, i);
+    }
+
+    const key = list[i];
+    shiftRight(list, 0, i);
+    list[0] = key;
+  }
+};
+
+const sortAsSorted = function (list) {
+  for (let i = 1; i < list.length; i++) {
+    if (list[i] < list[i - 1]) {
+      return startInsertionSort(list, i);
+    }
+  }
+};
+
+const jsSort = function (list) {
+  if (list.length <= 1) {
+    return;
+  }
+
+  if (list[0] <= list[1]) {
+    sortAsSorted(list);
+  } else {
+    sortAsRevSorted(list);
+  }
+};
 
 module.exports = {
   selectionSort,
@@ -95,4 +185,5 @@ module.exports = {
   insertionSort,
   quickSort,
   quickNotInPlaceSort,
+  jsSort,
 };
