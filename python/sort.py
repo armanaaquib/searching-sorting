@@ -78,6 +78,8 @@ def quick_sort(l, start, end):
     quick_sort(l, pivot_idx + 1, end)
 '''
 
+# Lomuto partition scheme
+
 
 def quick_sort(l, start, end):
     if end <= start:
