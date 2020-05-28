@@ -1,8 +1,9 @@
 let count;
 
-const sorter = function (el1, el2) {
+const objSorter = function (obj1, obj2) {
+  console.log(obj1, obj2);
   count += 1;
-  return el1 - el2;
+  return obj1.number - obj2.number;
 };
 
 const selectionSort = function (list) {
@@ -133,7 +134,6 @@ const findPos = function (list, start, end, el) {
   const midIdx = Math.ceil((start + end) / 2);
 
   count += 1;
-  console.log(el, list[midIdx]);
   if (el < list[midIdx]) {
     return findPos(list, start, midIdx - 1, el);
   } else {
@@ -191,11 +191,14 @@ const jsSort = function (list) {
 };
 
 const generateCounts = function (list) {
+  console.log(list);
   caseDetail = {};
 
-  console.log(list);
   count = 0;
-  list.slice().sort(sorter);
+  list.slice().sort((el1, el2) => {
+    count += 1;
+    return el1 - el2;
+  });
   caseDetail.jsSort = count;
 
   count = 0;
@@ -225,24 +228,66 @@ const generateCounts = function (list) {
   return caseDetail;
 };
 
+const getSortedList = function (length) {
+  const list = [];
+  for (let i = 0; i < length; i++) {
+    list.push(i);
+  }
+  return list;
+};
+
+const getRevSortedList = function (length) {
+  const list = [];
+  for (let i = length; i > 0; i--) {
+    list.push(i);
+  }
+  return list;
+};
+
+const getPartiallySortedList = function (length) {
+  let list = [];
+  for (let i = 0; i < length; i += 10) {
+    list = list.concat(getSortedList(5)).concat(getRevSortedList(5));
+  }
+  return list;
+};
+
+const getUnsortedList = function (length) {
+  const list = [];
+  for (let i = 0; i < length; i++) {
+    list.push(Math.floor(Math.random() * 100));
+  }
+  return list;
+};
+
 const sortDetail = {};
 
-const sortedList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-sortDetail[`sorted(${sortedList.length})`] = generateCounts(sortedList);
-
-const revSortedList = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
-sortDetail[`revSorted(${revSortedList.length})`] = generateCounts(
-  revSortedList
+sortDetail[`sorted(10)`] = generateCounts(getSortedList(10));
+sortDetail[`revSorted(10)`] = generateCounts(getRevSortedList(10));
+sortDetail[`partiallySortedList(10)`] = generateCounts(
+  getPartiallySortedList(10)
 );
+sortDetail[`unsortedList(10)`] = generateCounts(getUnsortedList(10));
 
-const partiallySortedList = [1, 2, 3, 4, 7, 9, 6, 5, 10, 8];
-sortDetail[
-  `partiallySortedList(${partiallySortedList.length})`
-] = generateCounts(partiallySortedList);
-
-const unsortedList = [9, 2, 6, 3, 7, 10, 8, 4, 1, 5];
-sortDetail[`unsortedList(${unsortedList.length})`] = generateCounts(
-  unsortedList
+sortDetail[`sorted(100)`] = generateCounts(getSortedList(100));
+sortDetail[`revSorted(100)`] = generateCounts(getRevSortedList(100));
+sortDetail[`partiallySortedList(100)`] = generateCounts(
+  getPartiallySortedList(100)
 );
+sortDetail[`unsortedList(100)`] = generateCounts(getUnsortedList(100));
+
+sortDetail[`sorted(1000)`] = generateCounts(getSortedList(1000));
+sortDetail[`revSorted(1000)`] = generateCounts(getRevSortedList(1000));
+sortDetail[`partiallySortedList(1000)`] = generateCounts(
+  getPartiallySortedList(1000)
+);
+sortDetail[`unsortedList(1000)`] = generateCounts(getUnsortedList(1000));
+
+// sortDetail[`sorted(10000)`] = generateCounts(getSortedList(10000));
+// sortDetail[`revSorted(10000)`] = generateCounts(getRevSortedList(10000));
+// sortDetail[`partiallySortedList(10000)`] = generateCounts(
+//   getPartiallySortedList(10000)
+// );
+// sortDetail[`unsortedList(10000)`] = generateCounts(getUnsortedList(10000));
 
 console.table(sortDetail);
