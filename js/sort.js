@@ -43,6 +43,27 @@ const insertionSort = function (list) {
   }
 };
 
+const quickNotInPlaceSort = function (list) {
+  if (list.length <= 1) return list;
+
+  const pivot = list[list.length - 1];
+
+  const left = [];
+  const right = [];
+
+  for (let el of list.slice(0, list.length - 1)) {
+    if (el <= pivot) {
+      left.push(el);
+    } else {
+      right.push(el);
+    }
+  }
+
+  return quickNotInPlaceSort(left)
+    .concat(pivot)
+    .concat(quickNotInPlaceSort(right));
+};
+
 const quickSort = function (list, start, end) {
   if (end <= start) return;
 
@@ -73,4 +94,5 @@ module.exports = {
   bubbleSort,
   insertionSort,
   quickSort,
+  quickNotInPlaceSort,
 };
