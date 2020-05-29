@@ -11,13 +11,13 @@ void swap(Int_ptr int_1, Int_ptr int_2)
 
 void selectionSort_array(Int_ptr array, int length)
 {
-  for (int i = 0; i < length - 1; i++) 
+  for (int i = 0; i < length - 1; i++)
   {
     int min_itm_idx = i;
 
-    for (int j = i + 1; j < length; j++) 
+    for (int j = i + 1; j < length; j++)
     {
-      if (array[j] < array[min_itm_idx]) 
+      if (array[j] < array[min_itm_idx])
         min_itm_idx = j;
     }
 
@@ -30,17 +30,17 @@ void bubbleSort_array(Int_ptr array, int length)
   for (int i = 0; i < length - 1; i++)
   {
     int swap_status = 0;
-    
+
     for (int j = i; j < length - i - 1; j++)
     {
-      if (array[j] > array[j+1])
+      if (array[j] > array[j + 1])
       {
-        swap(&array[j], &array[j+1]);
+        swap(&array[j], &array[j + 1]);
         swap_status = 1;
       }
     }
 
-    if(swap_status == 0)
+    if (swap_status == 0)
       break;
   }
 }
@@ -61,3 +61,33 @@ void insertionSort_array(Int_ptr array, int length)
     array[j + 1] = key;
   }
 }
+
+// Lomuto partition scheme
+void quickSort_array(Int_ptr array, int start, int end)
+{
+  if (end <= start)
+    return;
+
+  int pivot_idx = end;
+  int last_smaller_idx = start;
+
+  for (int j = start; j <= end; j++)
+  {
+    if (array[j] < array[pivot_idx])
+    {
+      int temp = array[j];
+      array[j] = array[last_smaller_idx];
+      array[last_smaller_idx] = temp;
+
+      last_smaller_idx += 1;
+    }
+  }
+  int temp = array[last_smaller_idx];
+  array[last_smaller_idx] = array[pivot_idx];
+  array[pivot_idx] = temp;
+
+  pivot_idx = last_smaller_idx;
+
+  quickSort_array(array, start, pivot_idx - 1);
+  quickSort_array(array, pivot_idx + 1, end);
+};
