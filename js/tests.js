@@ -8,7 +8,7 @@ const {
   jsSort,
 } = require('./sort');
 
-const { linearSearch } = require('./search');
+const { linearSearch, binarySearch } = require('./search');
 
 describe('selectionSort', function () {
   it('should sort empty list', function () {
@@ -135,18 +135,44 @@ describe('jsSort', function () {
 
 describe('linearSearch', function () {
   it('should return -1 if list is empty', function () {
-    assert.deepStrictEqual(linearSearch([], 1), -1);
+    assert.strictEqual(linearSearch([], 1), -1);
   });
 
   it('should return pos if element is in the list', function () {
-    assert.deepStrictEqual(linearSearch([1, 2, 3, 4, 5], 1), 0);
+    assert.strictEqual(linearSearch([1, 2, 3, 4, 5], 1), 0);
   });
 
   it('should return pos of first occurrence if element is in the list', function () {
-    assert.deepStrictEqual(linearSearch([3, 2, 1, 4, 1], 1), 2);
+    assert.strictEqual(linearSearch([3, 2, 1, 4, 1], 1), 2);
   });
 
   it('should return -1 if element is not in the list', function () {
-    assert.deepStrictEqual(linearSearch([3, 2, 1, 4, 1], 5), -1);
+    assert.strictEqual(linearSearch([3, 2, 1, 4, 1], 5), -1);
+  });
+});
+
+describe('binarySearch', function () {
+  it('should return -1 if list is empty', function () {
+    assert.strictEqual(binarySearch([], 1), -1);
+  });
+
+  it('should return -1 if element is not in the left the side of the list', function () {
+    assert.strictEqual(binarySearch([1, 2, 3, 4, 5], 0), -1);
+  });
+
+  it('should return -1 if element is not in the right the side of the list', function () {
+    assert.strictEqual(binarySearch([1, 2, 3, 4, 5], 6), -1);
+  });
+
+  it('should return pos if element is in the left side of the list', function () {
+    assert.strictEqual(binarySearch([1, 2, 3, 4, 5], 1), 0);
+  });
+
+  it('should return pos if element is in the right side of the list', function () {
+    assert.strictEqual(binarySearch([1, 2, 3, 4, 5], 5), 4);
+  });
+
+  it('should return pos of first occurrence if element is in the list', function () {
+    assert.strictEqual(binarySearch([1, 2, 3, 4, 4], 4), 3);
   });
 });
