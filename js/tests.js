@@ -8,6 +8,8 @@ const {
   jsSort,
 } = require('./sort');
 
+const { linearSearch } = require('./search');
+
 describe('selectionSort', function () {
   it('should sort empty list', function () {
     const list = [];
@@ -128,5 +130,23 @@ describe('jsSort', function () {
     const list = [5, 2, 3, 1, 0];
     jsSort(list);
     assert.deepStrictEqual(list, [0, 1, 2, 3, 5]);
+  });
+});
+
+describe('linearSearch', function () {
+  it('should return -1 if list is empty', function () {
+    assert.deepStrictEqual(linearSearch([], 1), -1);
+  });
+
+  it('should return pos if element is in the list', function () {
+    assert.deepStrictEqual(linearSearch([1, 2, 3, 4, 5], 1), 0);
+  });
+
+  it('should return pos of first occurrence if element is in the list', function () {
+    assert.deepStrictEqual(linearSearch([3, 2, 1, 4, 1], 1), 2);
+  });
+
+  it('should return -1 if element is not in the list', function () {
+    assert.deepStrictEqual(linearSearch([3, 2, 1, 4, 1], 5), -1);
   });
 });
