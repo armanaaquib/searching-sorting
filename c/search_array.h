@@ -4,5 +4,6 @@
 typedef int *Int_ptr;
 
 int linear_search_array(Int_ptr, int, int);
+int binary_search_array(Int_ptr, int, int);
 
 #endif
