@@ -176,7 +176,7 @@ Test_ptr should_q_sort_empty_array(Test_ptr test)
   int array[] = {};
   int expected[] = {};
 
-  quickSort_array(array, -1, -1);
+  quickSort_array(array, 0);
   assert_int_array_equal(array, expected, 0, test);
 
   return test;
@@ -189,7 +189,7 @@ Test_ptr should_q_sort_sorted_array(Test_ptr test)
   int array[] = {1, 2, 3, 4, 5};
   int expected[] = {1, 2, 3, 4, 5};
 
-  quickSort_array(array, 0, 4);
+  quickSort_array(array, 5);
   assert_int_array_equal(array, expected, 5, test);
 
   return test;
@@ -202,7 +202,7 @@ Test_ptr should_q_sort_unsorted_array(Test_ptr test)
   int array[] = {2, 1, 5, 3, 4};
   int expected[] = {1, 2, 3, 4, 5};
 
-  quickSort_array(array, 0, 4);
+  quickSort_array(array, 5);
   assert_int_array_equal(array, expected, 5, test);
 
   return test;

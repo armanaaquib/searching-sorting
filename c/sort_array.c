@@ -63,7 +63,7 @@ void insertionSort_array(Int_ptr array, int length)
 }
 
 // Lomuto partition scheme
-void quickSort_array(Int_ptr array, int start, int end)
+void _quickSort_array(Int_ptr array, int start, int end)
 {
   if (end <= start)
     return;
@@ -88,6 +88,11 @@ void quickSort_array(Int_ptr array, int start, int end)
 
   pivot_idx = last_smaller_idx;
 
-  quickSort_array(array, start, pivot_idx - 1);
-  quickSort_array(array, pivot_idx + 1, end);
+  _quickSort_array(array, start, pivot_idx - 1);
+  _quickSort_array(array, pivot_idx + 1, end);
 };
+
+void quickSort_array(Int_ptr array, int length)
+{
+  _quickSort_array(array, 0, length - 1);
+}
