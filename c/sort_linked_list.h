@@ -27,5 +27,6 @@ typedef int (*Matcher)(Element, Element);
 void selectionSort_linked_list(LinkedList_ptr, Matcher is_less_than);
 void bubbleSort_linked_list(LinkedList_ptr, Matcher is_less_than);
 void insertionSort_linked_list(LinkedList_ptr, Matcher is_less_than);
+void quickSort_linked_list(LinkedList_ptr, Matcher sorter);
 
 #endif

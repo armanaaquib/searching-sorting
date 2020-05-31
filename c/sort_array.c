@@ -71,7 +71,7 @@ void quickSort_array(Int_ptr array, int start, int end)
   int pivot_idx = end;
   int last_smaller_idx = start;
 
-  for (int j = start; j <= end; j++)
+  for (int j = start; j < end; j++)
   {
     if (array[j] < array[pivot_idx])
     {
