@@ -50,13 +50,12 @@ TestReport_ptr create_report(void)
 void run_tests(Char_ptr test_suite_name, Test_Func tests[], int length, TestReport_ptr report)
 {
   display_test_suite_name(test_suite_name);
-
-  for(int i = 0; i < length; i++)
+  for (int i = 0; i < length; i++)
   {
     Test_ptr test = create_test();
     test = (*tests[i])(test);
 
-    if(test->status)
+    if (test->status)
     {
       report->passed++;
       pass_message(test->name);
@@ -68,14 +67,13 @@ void run_tests(Char_ptr test_suite_name, Test_Func tests[], int length, TestRepo
       error_message(test->error);
     }
   }
-
 }
 
 TestReport_ptr runt_test_suites(TestSuite_Func test_suites[], int length)
 {
   TestReport_ptr report = create_report();
 
-  for(int i = 0; i < length; i++)
+  for (int i = 0; i < length; i++)
   {
     (*test_suites[i])(report);
   }
