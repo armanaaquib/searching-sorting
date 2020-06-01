@@ -32,6 +32,31 @@ void assert_int_array_equal(Int_ptr array_1, Int_ptr array_2, int length, Test_p
   }
 }
 
+void assert_element_equal(Element actual, Element expected, Matcher matcher, Test_ptr test)
+{
+  if (test->status == False)
+    return;
+
+  if (!(*matcher)(actual, expected))
+  {
+    test->status = False;
+    sprintf(test->error, "Elements are not equal\n");
+    printf("%d %d", *(Int_ptr)actual, *(Int_ptr)expected);
+  }
+}
+
+void assert_element_null(Element el, Test_ptr test)
+{
+  if (test->status == False)
+    return;
+
+  if (el != NULL)
+  {
+    test->status = False;
+    sprintf(test->error, "Element is not null\n");
+  }
+}
+
 void assert_linked_list_equal(LinkedList_ptr ll_1, LinkedList_ptr ll_2, Matcher is_el_equal, Test_ptr test)
 {
   if (test->status == False)

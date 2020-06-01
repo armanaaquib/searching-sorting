@@ -6,12 +6,19 @@
 void add_to_list(LinkedList_ptr, Element);
 LinkedList_ptr create_linked_list_from_ints(Int_ptr, int);
 int is_int_equal(Element, Element);
+int cmp_int(Element, Element);
 
 void test_linear_search_linked_list(TestReport_ptr);
 Test_ptr should_l_search_empty_linked_list(Test_ptr);
 Test_ptr should_l_search_if_el_is_in_the_linked_list(Test_ptr);
 Test_ptr should_l_search_first_occurrence_el_is_in_the_linked_list(Test_ptr);
 Test_ptr should_l_search_if_el_is_not_in_the_linked_list(Test_ptr);
+
+void test_binary_search_linked_list(TestReport_ptr);
+Test_ptr should_b_search_empty_linked_list(Test_ptr);
+Test_ptr should_b_search_if_el_is_in_the_left_of_the_linked_list(Test_ptr);
+Test_ptr should_b_search_if_el_is_in_the_right_of_the_linked_list(Test_ptr);
+Test_ptr should_b_search_if_el_is_not_in_the_linked_list(Test_ptr);
 
 void add_to_list(LinkedList_ptr linked_list, Element element)
 {
@@ -52,6 +59,11 @@ LinkedList_ptr create_linked_list_from_ints(Int_ptr array, int length)
 int is_int_equal(Element el_1, Element el_2)
 {
   return *(Int_ptr)el_1 == *(Int_ptr)el_2;
+}
+
+int cmp_int(Element el_1, Element el_2)
+{
+  return *(Int_ptr)el_1 - *(Int_ptr)el_2;
 }
 
 Test_ptr should_l_search_empty_linked_list(Test_ptr test)
@@ -121,11 +133,78 @@ void test_linear_search_linked_list(TestReport_ptr report)
   run_tests("linear_search_array()", tests, 4, report);
 }
 
+Test_ptr should_b_search_empty_linked_list(Test_ptr test)
+{
+  test->name = "should return NULL if linked list is empty";
+
+  int array[] = {};
+  LinkedList_ptr linked_list = create_linked_list_from_ints(array, 0);
+
+  Element element = malloc(sizeof(int));
+  *(Int_ptr)element = 1;
+  assert_element_null(binary_search_linked_list(linked_list, element, cmp_int), test);
+
+  return test;
+}
+
+Test_ptr should_b_search_if_el_is_in_the_right_of_the_linked_list(Test_ptr test)
+{
+  test->name = "should return pos if element is in the right of the linked list";
+
+  int array[] = {1, 2, 3, 4, 5};
+  LinkedList_ptr linked_list = create_linked_list_from_ints(array, 5);
+
+  Element element = malloc(sizeof(int));
+  *(Int_ptr)element = 5;
+  assert_element_equal(binary_search_linked_list(linked_list, element, cmp_int), element, is_int_equal, test);
+
+  return test;
+}
+
+Test_ptr should_b_search_if_el_is_in_the_left_of_the_linked_list(Test_ptr test)
+{
+  test->name = "should return pos if element is in the left of the linked list";
+
+  int array[] = {1, 2, 3, 4, 5};
+  LinkedList_ptr linked_list = create_linked_list_from_ints(array, 5);
+
+  Element element = malloc(sizeof(int));
+  *(Int_ptr)element = 1;
+  assert_element_equal(binary_search_linked_list(linked_list, element, cmp_int), element, is_int_equal, test);
+
+  return test;
+}
+
+Test_ptr should_b_search_if_el_is_not_in_the_linked_list(Test_ptr test)
+{
+  test->name = "should return NULL if element is not in the linked list";
+
+  int array[] = {1, 2, 3, 4, 5};
+  LinkedList_ptr linked_list = create_linked_list_from_ints(array, 5);
+
+  Element element = malloc(sizeof(int));
+  *(Int_ptr)element = 6;
+  assert_element_null(binary_search_linked_list(linked_list, element, cmp_int), test);
+
+  return test;
+}
+
+void test_binary_search_linked_list(TestReport_ptr report)
+{
+  Test_Func tests[] = {
+      should_b_search_empty_linked_list,
+      should_b_search_if_el_is_in_the_left_of_the_linked_list,
+      should_b_search_if_el_is_in_the_right_of_the_linked_list,
+      should_b_search_if_el_is_not_in_the_linked_list};
+
+  run_tests("binary_search_array()", tests, 4, report);
+}
+
 int main(void)
 {
-  TestSuite_Func test_suites[] = {test_linear_search_linked_list};
+  TestSuite_Func test_suites[] = {test_linear_search_linked_list, test_binary_search_linked_list};
 
-  TestReport_ptr report = runt_test_suites(test_suites, 1);
+  TestReport_ptr report = runt_test_suites(test_suites, 2);
   display_report(report);
 
   return 0;
